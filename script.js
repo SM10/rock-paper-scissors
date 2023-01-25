@@ -1,29 +1,45 @@
-
-let totalRound = 5;
 let wins = 0;
 let losses = 0;
 let draws = 0;
-for (counter = 1; counter <= 5; counter ++)
-{
-    alert("Round " + counter + ". " + wins + " wins, " + losses + " losses, " + draws + " draws")
-    let result = game();
-    if(result.startsWith("loss")){
-        losses++;
-    }else if (result == "win"){
-        wins++;
-    }else if (result == "draw"){
-        draws++;
+let userInput;
+let textarea = document.querySelector('#round-results')
+let matchtextarea = document.querySelector('#match-results')
+
+function choiceSelected(event){
+    console.log(event)
+    userInput = event
+    game()
+    matchtextarea.textContent = "Current score: " + wins + " wins, " + losses + " losses, " + draws + " draws"
+
+    if(wins == 5){
+        matchtextarea.textContent = "Congratulations! You were first to reach 5 wins! " + matchtextarea.textContent
+        wins = 0;
+        losses = 0;
+        draws = 0;
+    }
+    if(losses == 5){
+        matchtextarea.textContent = "Too bad! The computer reached 5 wins first. " + matchtextarea.textContent
+        wins = 0;
+        losses = 0;
+        draws = 0;
     }
 }
 
-alert("Match results: " + wins + " wins, " + losses + " losses, " + draws + " draws")
-
 function game(){
-    let userInput = prompt("Choose rock, paper or scissors").toLowerCase()
     let computerChoice = getComputerChoice()
     let result = getRPAResult(userInput, computerChoice)
-    alert("You have chosen " + userInput + ". The computer chose " + computerChoice + ". The result is a " + result)
-    return result
+    textarea.textContent = "You have chosen " + userInput + ". The computer chose " + computerChoice + ". The result is a " + result
+    switch(result){
+        case "win":
+            wins++
+            break;
+        case "loss":
+            losses++
+            break;
+        case "draw":
+            draws++
+            break;
+    }
 }
 
 function getComputerChoice(){

@@ -3,6 +3,14 @@
     <head>
         <meta charset="UTF-8">
         <title>Rock Paper Scissors!</title>
-        <script src="script.js"></script>
+        <script src="script.js" defer></script>
     </head>
+    <body>
+        <h1>First to 5 Rock Paper Scissors!</h1>
+        <button id="rock" onclick="choiceSelected('rock')">Rock</button>
+        <button id="paper" onclick="choiceSelected('paper')">Paper</button>
+        <button id="scissors" onclick="choiceSelected('scissors')">Scissors</button>
+        <div id="round-results">Click on a button to start round 1.</div>
+        <div id="match-results"></div>
+    </body>
 </html>
